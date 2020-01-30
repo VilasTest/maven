@@ -1,0 +1,30 @@
+################################################################################################################
+mvn archetype:generate -DgroupId=com.vilas.bus -DartifactId=DemoWeb -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false  
+
+mvn compile
+#Generating war using goal
+mvn compile war:war
+mvn compile war:exploded
+mvn compile war:inplace
+
+#Standard maven command
+mvn package
+
+Add the plugin below into your pom's build section
+  <build>
+    <finalName>DemoWeb</finalName>
+	<plugins>
+		<!-- http://www.eclipse.org/jetty/documentation/current/jetty-maven-plugin.html -->
+		<plugin>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-maven-plugin</artifactId>
+			<version>9.4.12.v20180830</version>
+		</plugin>
+	</plugins>
+
+  </build>
+
+
+mvn jetty:run
+http://localhost:8080
+################################################################################################################
